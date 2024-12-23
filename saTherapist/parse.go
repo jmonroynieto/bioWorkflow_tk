@@ -194,6 +194,6 @@ func (f *Flagstat) generateReport() {
 	ur := f.PairedInSeq[0] + f.PairedInSeq[1] - f.PrimaryMapped[0] - f.PrimaryMapped[1] //unmapped reads
 	result += fmt.Sprintf("%d unmapped include %d singletons\n", ur, f.Singletons[0])
 	prc_HQsnv := float64(f.MateDiffChrMapQ5[0]) / float64(f.MateDiffChr[0]) * 100
-	result += fmt.Sprintf("Structural variation evidence in %d reads where mates mapped to a different chr of which %.2f (%d) are high quality mappings. %d Supplementary mappings could also indicate SV\n", f.MateDiffChr[0], prc_HQsnv, f.MateDiffChrMapQ5[0], f.Supplementary[0])
+	result += fmt.Sprintf("Structural variation evidence in %d reads where mates mapped to a different chr of which %.2f%% (%d) are high quality mappings. %d Supplementary mappings could also indicate SV\n", f.MateDiffChr[0], prc_HQsnv, f.MateDiffChrMapQ5[0], f.Supplementary[0])
 	f.Output = result
 }
