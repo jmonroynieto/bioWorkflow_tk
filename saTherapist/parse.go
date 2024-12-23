@@ -34,7 +34,6 @@ var flagstatFlags []cli.Flag = []cli.Flag{
 
 //missing due to flagstat limitations:
 //- mapped reads for each read pair, can be obtained by filtering -F 0x904 and comparing Read1 and Read2 fields to the unfiltered version. That sums up to the total mapped reads that this subcommand does report.
-//-properly paied primary alignment fraction.
 
 type Flagstat struct {
 	Input                 string  `json:"input"`
@@ -133,7 +132,7 @@ func scanFlagstat(scanner *bufio.Scanner) (*Flagstat, error) {
 		errorutils.ExitOnFail(sentinel)
 		err := scanner.Err()
 		errorutils.ExitOnFail(err, errorutils.WithMsg("scanner error on input: "+line))
-		flagstat.pppmp = float64(flagstat.ProperlyPaired[0]) / float64(flagstat.PrimaryMapped[0])*100
+		flagstat.pppmp = float64(flagstat.ProperlyPaired[0]) / float64(flagstat.PrimaryMapped[0]) * 100
 	}
 	return &flagstat, nil
 }
